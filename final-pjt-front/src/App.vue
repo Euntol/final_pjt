@@ -8,7 +8,14 @@
         :to="{ name: 'Signup' }"
         >Signup</router-link
       >
-      <router-link v-else :to="{ name: 'Profile' }">Profile</router-link>
+      <router-link
+        v-else
+        :to="{
+          name: 'Profile',
+          params: { username: this.$store.state.username },
+        }"
+        >Profile</router-link
+      >
       |
       <router-link
         v-if="this.$store.getters.getUserToken === null"

@@ -36,7 +36,7 @@ export default {
     get_articles() {
       axios({
         method: "GET",
-        url: `${API_URL}/api/v1/community/`,
+        url: `${API_URL}/api/v1/community/post/${this.$store.state.username}`,
       })
         .then((res) => {
           console.log(res);
