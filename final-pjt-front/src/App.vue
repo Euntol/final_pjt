@@ -22,7 +22,7 @@
         :to="{ name: 'Login' }"
         >Login</router-link
       >
-      <button v-else @click="logout">Logout</button>
+      <b-button v-else @click="logout">Logout</b-button>
       <p>환영합니다 {{ this.$store.getters.getUserName }}</p>
     </nav>
     <router-view />

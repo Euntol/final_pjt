@@ -10,7 +10,7 @@
       <b-container v-for="article in articles" :key="article.id">
         <p>{{ article.title }}</p>
         <p>{{ article.content }}</p>
-        <p>{{ article.tags }}</p>
+        <span v-for="tag in article.tags" :key="tag.id">#{{ tag.name }} </span>
         <router-link
           :to="{ name: 'DetailCommunityArticle', params: { id: article.id } }"
           >[Detail]</router-link
