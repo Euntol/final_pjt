@@ -54,6 +54,7 @@ export default new Vuex.Store({
     },
     // 회원가입
     signUp(context, payload) {
+      const username = payload.username
       axios({
         method: 'post',
         url: `${API_URL}/accounts/signup/`,
@@ -65,6 +66,7 @@ export default new Vuex.Store({
       })
         .then((res) => {
           console.log(res.data.key)
+          context.commit('SAVE_USERNAME', username)
           context.commit('SAVE_TOKEN', res.data.key)
         })
         .catch(() => {

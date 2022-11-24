@@ -1,10 +1,8 @@
 <template>
   <div>
-    <h3>UserArticle이 출력되는 자리입니다.</h3>
       <b-container v-for="article in articles" :key="article.id">
         <div>
           <b-card-group deck>
-            <!-- <span v-for="tag in article.tags" :key="tag.id">#{{ tag.name }} </span> -->
             <b-card
               header-tag="header"
               footer="tags"
@@ -12,15 +10,14 @@
               :title="getTitle(article)"
             >
               <b-card-text>{{ article.content }}</b-card-text>
-              <b-card-img :src="`http://localhost:8000${article.image}`" alt="None" style="width:726px" class="rounded-0"></b-card-img>
-              <!-- <b-button :to="{ name: 'DetailCommunityArticle', params: { id: article.id } }">Detail</b-button> | -->
+              <b-card-img v-if="article.image" :src="`http://localhost:8000${article.image}`" alt="None" class="rounded-0"></b-card-img>
               <b-button v-b-modal.modal-1 @click="getArticleIdState(article)">Detail</b-button>
             </b-card>
           </b-card-group>
         <hr />
         </div>
       </b-container>
-      <b-modal id="modal-1" title="BootstrapVue">
+      <b-modal id="modal-1" title="BootstrapVue" hide-footer hide-header>
         <CommunityDetail v-if="state === 'Detail'" :id="this.id" @changeEditState="changeEditState" />
         <CommunityEdit v-else-if="state === 'Edit'" :id="this.id" @changeDetailState="changeDetailState" @getArticles="get_articles" />
       </b-modal>

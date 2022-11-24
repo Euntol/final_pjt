@@ -1,23 +1,17 @@
 <template>
-  <b-container style="width: 726px">
+  <b-container>
     <h1>Edit Article</h1>
     <hr />
     <form @submit.prevent="editArticle">
       <div>
-        <label for="communityarticletitle">Title: </label>
-        <input
-          id="communityarticletitle"
-          type="text"
-          v-model.trim="communityarticletitle"
-        />
-        <br />
         <textarea
           cols="30"
           rows="10"
+          placeholder="내용"
           v-model="communityarticlecontent"
         ></textarea>
         <br />
-        <label for="communityarticletags">Tags: </label>
+        <label for="communityarticletags"></label>
         <input
           id="communityarticletags"
           placeholder="#태그1 #태그2"
@@ -68,22 +62,11 @@ export default {
         });
     },
     editArticle() {
-      if (!this.communityarticletitle) {
-        alert("제목을 입력해주세요");
-        return;
-      }
       const frm = new FormData();
-      // const photoFile = document.getElementById("photo");
-      // frm.append("photo", photoFile.files[0]);
       frm.append("image", this.image);
       frm.append("title", this.communityarticletitle)
       frm.append("content", this.communityarticlecontent)
       frm.append("tags", this.communityarticletags)
-      // if (this.iamge.length > -1) {
-      //   for (let i = 0; i < this.iamge.length; i++) {
-      //     const imageForm = this.image
-      //   }
-      // }
       axios({
         method: "PUT",
         url: `${API_URL}/api/v1/community/${this.id}/`,
@@ -112,4 +95,8 @@ export default {
 </script>
 
 <style>
+.modal-body {
+   background-color: rgb(94, 133, 151);
+   border-radius: 5px;
+}
 </style>

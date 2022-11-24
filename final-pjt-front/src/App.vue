@@ -2,7 +2,7 @@
   <div id="app">
     <nav>
       <router-link :to="{ name: 'Movies' }">Movies</router-link> |
-      <router-link :to="{ name: 'Community' }">Community</router-link> |
+      <router-link :to="{ name: 'Community' }">Community</router-link> | 
       <router-link
         v-if="this.$store.getters.getUserToken === null"
         :to="{ name: 'Signup' }"
@@ -15,16 +15,15 @@
           params: { username: this.$store.state.username },
         }"
         >Profile</router-link
-      >
-      |
+      > |
       <router-link
         v-if="this.$store.getters.getUserToken === null"
         :to="{ name: 'Login' }"
         >Login</router-link
       >
-      <b-button v-else @click="logout">Logout</b-button>
-      <p>환영합니다 {{ this.$store.getters.getUserName }}</p>
+      <span v-else @click="logout">Logout</span>
     </nav>
+      <p>환영합니다 {{ this.$store.getters.getUserName }}</p>
     <router-view />
   </div>
 </template>
@@ -47,8 +46,12 @@ export default {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
+  color: #fff ;
+  /* background-color: #6C7A89; */
+  background-image: url('../src/image/배경.png')
 }
+
+
 
 nav {
   padding: 30px;
@@ -60,6 +63,12 @@ nav a {
 }
 
 nav a.router-link-exact-active {
-  color: #42b983;
+  color: #A3C6C4;
+}
+
+b-form-input {
+  background-color: #E0E7E9;
+  color: #354649,
 }
 </style>
+

@@ -1,24 +1,20 @@
 <template>
-  <b-container style="width: 726px">
+  <b-container>
     <h1>Create Article</h1>
     <hr />
     <form @submit.prevent="createArticle" enctype=“multipart/form-data”>
       <div>
-        <label for="communityarticletitle">Title: </label>
-        <input
-          id="communityarticletitle"
-          type="text"
-          v-model.trim="communityarticletitle"
-        />
-        <br />
         <textarea
-          cols="30"
+          style="width: 445px;"
+          cols="60"
           rows="10"
+          placeholder="내용"
           v-model="communityarticlecontent"
         ></textarea>
         <br />
-        <label for="communityarticletags">Tags: </label>
+        <label for="communityarticletags"></label>
         <input
+          style="width: 445px;"
           id="communityarticletags"
           placeholder="#태그1 #태그2"
           type="text"
@@ -48,22 +44,11 @@ export default {
   },
   methods: {
     createArticle() {
-      if (!this.communityarticletitle) {
-        alert("제목을 입력해주세요");
-        return;
-      }
       const frm = new FormData();
-      // const photoFile = document.getElementById("photo");
-      // frm.append("photo", photoFile.files[0]);
       frm.append("image", this.image);
       frm.append("title", this.communityarticletitle)
       frm.append("content", this.communityarticlecontent)
       frm.append("tags", this.communityarticletags)
-      // if (this.iamge.length > -1) {
-      //   for (let i = 0; i < this.iamge.length; i++) {
-      //     const imageForm = this.image
-      //   }
-      // }
       axios({
         method: "POST",
         url: `${API_URL}/api/v1/community/`,
